@@ -89,9 +89,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/easy_coding?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>root</jdbc.password>
+                <jdbc.url><![CDATA[jdbc:mysql://39.106.26.128:3306/experiment?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
+                <jdbc.username>594cto</jdbc.username>
+                <jdbc.password>123456</jdbc.password>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
             </properties>
         </profile>
