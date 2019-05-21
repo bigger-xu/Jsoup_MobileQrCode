@@ -83,11 +83,11 @@ public class PayController {
      * @return
      */
     @RequestMapping(value = "/pay-order", method = RequestMethod.GET)
-    public Observable<String> payOrder(String validateCode, String cookies,String mobile) {
+    public Observable<String> payOrder(String validateCode, String cookies,String mobile,Integer amount) {
         CommonRequestFactory.CommonRequest req = CommonRequestFactory.create(null);
         final Map<String, String> alipayCookies = new HashMap<>();
 
-        return TopUpService.doTrade(mobile, validateCode, 50, cookies).switchMap(response -> {
+        return TopUpService.doTrade(mobile, validateCode, amount, cookies).switchMap(response -> {
             //获取订单号
             String data = new String(response.body().bytes(), StandardCharsets.UTF_8);
             System.out.println("提交订单响应: " + data);

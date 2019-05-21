@@ -1,1 +1,29 @@
-1
+###移动
+
+1.获取支付二维码
+接口地址：http://localhost:8089/pay/ydCode
+参数：mobile 手机号
+     amount 充值金额  必须是正整数  前端验证下
+
+返回：支付宝二维码链接地址，前端做解析
+
+
+###电信
+
+1.获取验证码
+接口地址：http://localhost:8089/pay/validate-code
+参数：无
+
+返回：[{"image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAA3CAYAAADHao5rAAAEgElEQVR42u2a+2vUQBDH8xf6HwgiFEEEEUQQQQQRRBB/EUQQQQQRRCq1Uiu1UitVqZWq9H192vfz+rg+ro/IJ7DnJM3lkmtyl7vOF5a2uXSTm8/u7MzOWraqrmWpCRSwSgGrFLBKAasUsEoBqxSwAlYpYJUCLkfbq3m758lMpJZbyif2PjvZfXuxb8ue6srak51Ze7Znw96Y3bOPDo8UcDma6920G8/1R2p7mweRBhADolQD6pd7k3ZTw4DvM7nefnPMga6AI2ikZTkS3PdXRiL133p1JPIACmp4EAUcQT8ezxSMN9a+ai8N5ALb2vhOooA/3Rpz3PPWwp7TcNH9rxftD9cyCrgcYdByXG9UwG8vDPqu59Ild92fClxrs5M79kz3ugKOIgyPcd9dGkqkfwOYn17lcwf2m/P/AScZvJ1KwOvTuwXjdt6dqDjg5eGcyz1rmhSzRttWC8YdaFw89jnpCddNW8lsl+wTN2/uZ00PAsx6LgGH6V8BR9Cv53MF4/795r+2ddweL9zTcnnYcatB+v5w2tVnEOD93UO7+eKQy4sc5I8UcFz6fGeiYNyJjjVnRnkDLYCSGslAqJgIgM6cbahIU8AhRGBVLNf9/WLeiVoR6RHXKwWvlsGnBjAzNSgfrQWYaYSeKsBsIpgNjLiM6d2IKLXRQZpEsMd6zP/63dN2PXMsAEsr+FS56KgGoRBAoGUM//HGqBNpm1zaLwiTfzOoWOeHmpcLO1OmEfCZddz7mRwIcX+nuEFbtQIUEHIT4ufTWacPigLyuoFLo3ARVuxY/Xm54IJodqn4jDRL9m1apnUl0e9dc4BP8uVIW4xhmVVGGD+uIoB8BimZFB6DCpP3WXHky0nBttIEtpTkmijzWGZRXEbHI5QqRVJskPfEvesWJ2ir2mCjiJxXBjoIkNJFy/W4nGIFwVWYgSLfhZbUAYCT2s+qBthyJTc4WIMJmGQANNi05IJN6bEcSXBE9H5i21Pel3RholzQViVf5iQymxumkVLJbci+Vwu+7jrqiQvWWfn/FEDCAOakSLWXu8QBJxn2y+CH9EcamBqy3DOW4JnRUQ4FyH6pDeOy/SQjbjxLNc5ohbG3lXawqPfZnGu2YFyTsvCTkxbedZTzUhIAMzOMl5B5tcmFvWLLVBYleJ+0pZuxAI4DLC6UqJRgRs5C1tf535uumWuMKU994KqLuVoJofvRtDMQqCj5rZfA9W5osAEiXS+zlCKIHARE82EGT7UgW0mMmiiSJUJcIgajeSNj/mZ9lbOZ34PEAJH9fH0w5QLD4KGC5fc82SiC+N3DtbSd+vAyseLo5CSSJcJix1OJmNmC5PCbMTJpUKlaMGIWhj1gR99+25J+70ROnoaZW4pP1QETpQKOFAeQGI7SILOVrcYwEMOKJYBZzR4yrt4ctON3XLfJm3kmx3e4Dy/BPbwbSwnvGuc7JQ3aqiZcVfKyFK4CVrj1Dljh1jFghXuKAKvqDLDCVcCqWgWsa68CVilgVU0AVilglQJWKWCV5sEqBawKC1gh177+AWJI1POMI53GAAAAAElFTkSuQmCC","cookies":"nvid=1; trkId=7e1e0879-c8f2-4f8e-b752-e828bdff9095; s_fid=3f231409d071420d-292297ac5bbe4810; lvid=0dce317d3e7949a4975124bc9e3dd207; svid=9c63074529664af3; s_cc=true; loginStatus=non-logined; trkHmClickCoords=587%2C1060%2C2108; JSESSIONID-JT=7A5AAD984628556CD996E45117F81484-n3"}]
+     参数说明  image  验证码图片
+              cookies   别做任何改动，传到下一个接口
+
+2.获取支付二维码
+
+接口地址：http://localhost:8089/pay/pay-order
+参数：validateCode 验证码  String
+     cookies 第一步获取验证码的时候返回的cookies   String
+     mobile 手机号   String
+     amount 充值金额  必须是正整数  前端验证下   Integer
+
+返回：支付宝二维码链接地址，前端做解析
