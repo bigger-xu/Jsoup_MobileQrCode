@@ -46,10 +46,10 @@ public class JsoupSample {
                 .switchMap(response -> {
                     Map<String, Object> reqData = new HashMap<>();
                     reqData.put("channel", "00");
-                    reqData.put("amount", amount * 0.998);
+                    reqData.put("amount", amount);
                     reqData.put("chargeMoney", amount);
                     reqData.put("choseMoney", amount);
-                    reqData.put("operateId", 1552);
+//                    reqData.put("operateId", 1552);
                     reqData.put("homeProv", "551");
                     reqData.put("source", "");
                     reqData.put("numFlag", "0");
