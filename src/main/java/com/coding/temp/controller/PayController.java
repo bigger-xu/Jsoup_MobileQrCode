@@ -98,8 +98,6 @@ public class PayController {
             Document doc = Jsoup.parse(html);
             Element reqParams = doc.selectFirst("input[name='request_params']");
             String values = reqParams.val();
-
-
             return req.postForm(
                     "http://paygo.189.cn:9778/189pay/service",
                     new HashMap<String, String>() {{
@@ -116,9 +114,6 @@ public class PayController {
 
             return req.postForm("https://mapi.alipay.com/gateway.do?_input_charset=utf-8", new HashMap<>(), body);
         }).switchMap(response -> {
-            //mapi.alipay.com -> Response
-            //Request -> unitradeadapter.alipay.com
-
             Map<String, String> reqCookies = generateAlipayCookie(response.headers());
             reqCookies.keySet().forEach(key -> alipayCookies.put(key, reqCookies.get(key)));
             Map<String, String> headers = new HashMap<>();
@@ -128,9 +123,6 @@ public class PayController {
             String location = response.headers().get("Location");
             return req.get(location, headers);
         }).switchMap(response -> {
-            //unitradeadapter.alipay.com -> Response
-            //Request -> excashier.alipay.com
-
             Map<String, String> reqCookies = generateAlipayCookie(response.headers());
             if (reqCookies.containsKey("ALIPAYJSESSIONID")) {
                 alipayCookies.put("ALIPAYJSESSIONID", reqCookies.get("ALIPAYJSESSIONID"));
@@ -143,8 +135,6 @@ public class PayController {
             String location = response.headers().get("Location");
             return req.get(location, headers);
         }).map(response -> {
-            //excashier.alipay.com -> Response
-
             String data = response.body().string();
             Document doc = Jsoup.parse(data);
             String qrImageUrl = doc.selectFirst("#J_qrImgUrl").attr("value");
